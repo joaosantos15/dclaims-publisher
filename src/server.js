@@ -22,23 +22,23 @@ function increase () {
   counter++
   console.log(counter)
   ClaimsBuffer.elementsOverTreshold(2).then(issueBatch).then(list => {
-  	for (let i = 0; i < list.length; i++) {
-  		ClaimsBuffer.clear(list[i])
-  		console.log('Cleared: ' + list[i])
-  	}
+    for (let i = 0; i < list.length; i++) {
+      ClaimsBuffer.clear(list[i])
+      console.log('Cleared: ' + list[i])
+    }
   })
 }
 
 function issueBatch (list) {
   return new Promise(function (resolve, reject) {
-  	let items = []
+    let items = []
     for (let i = 0; i < list.length; i++) {
-  		let item = ClaimsBuffer.get(list[i])
-  		items.push({key: list[i], item: item})
-  	}
-  	Issue.issueBatch(items).then(res => {
-  		resolve(list)
-  	})
+      let item = ClaimsBuffer.get(list[i])
+      items.push(item)
+    }
+    Issue.issueBatch(items).then(res => {
+      resolve(list)
+    })
   })
 }
 
