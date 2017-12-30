@@ -1,4 +1,5 @@
 exports = module.exports
+const HypercertsNewsClaims = require('../../../hypercerts-news-claims/src/index.js')
 
 // global.claimsBuffer is type Map()
 

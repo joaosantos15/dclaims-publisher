@@ -1,8 +1,9 @@
 const express = require('express')
-const MongoClient = require('mongodb').MongoClient
 const bodyParser = require('body-parser')
 const ClaimsBuffer = require('./app/claimsBuffer.js')
 const Issue = require('./issue.js')
+// const HypercertsCore = require('hypercerts-core')
+const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 
 const app = express()
 
@@ -30,16 +31,24 @@ function increase () {
 }
 
 function issueBatch (list) {
-  return new Promise(function (resolve, reject) {
-    let items = []
-    for (let i = 0; i < list.length; i++) {
-      let item = ClaimsBuffer.get(list[i])
-      items.push(item)
-    }
-    Issue.issueBatch(items).then(res => {
-      resolve(list)
+  if (list.length == 0) {
+    console.log('nothing to do...')
+    return true
+  } else {
+    return new Promise(function (resolve, reject) {
+      let items = []
+      for (let i = 0; i < list.length; i++) {
+        let item = ClaimsBuffer.get(list[i])
+        items.push(item)
+      }
+      console.log(items[0])
+      Issue.issueIndividually(items[0]).then(res => {
+        resolve(list)
+      })
     })
-  })
+  }
 }
 
-setInterval(increase, 3000)
+HypercertsCore.init(1).then(value => {
+  setInterval(increase, 3000)
+})
