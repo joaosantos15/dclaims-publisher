@@ -1,6 +1,6 @@
 const Issue = require('../issue.js')
 const ClaimsBuffer = require('../claimsBuffer.js')
-const HypercertsNewsClaims = require('../../../../hypercerts-news-claims/src/index.js')
+const HypercertsNewsClaims = require('hypercerts-news-claims')
 
 module.exports = function (app) {
   app.get('/issue', (req, res) => {
