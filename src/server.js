@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const ClaimsBuffer = require('./app/claimsBuffer.js')
 const Issue = require('./issue.js')
 const HypercertsCore = require('hypercerts-core')
