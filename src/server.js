@@ -48,7 +48,26 @@ function issueBatch (list) {
     })
   }
 }
+var ethereumHost
+if (process.argv[2]) {
+  ethereumHost = process.argv[2]
+} else {
+  ethereumHost = 'localhost'
+}
 
-HypercertsCore.init(1).then(value => {
+if (process.argv[3]) {
+  ipfsHost = process.argv[3]
+} else {
+  ipfsHost = '127.0.0.1'
+}
+
+let hypercertsSetup =
+  {
+    initType: 1,
+    ipfsHost: ipfsHost,
+    ethereumRPC: 'http://' + ethereumHost + ':8545'
+  }
+
+HypercertsCore.init(hypercertsSetup).then(value => {
   setInterval(increase, 3000)
 })
