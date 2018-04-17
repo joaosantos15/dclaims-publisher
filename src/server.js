@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 })
 
 const RPC_ADDRESS = 'http://146.193.41.153:8545'
-const CONTRACT_ADDRESS = '0xF2F2f7C36fbBA17ad8a28a4680a7059B44C4B626'
+const CONTRACT_ADDRESS = '0xfa66a818D2e537F4A861b71a435CfBB1B5A2BdF2'
 
 const port = 8000
 

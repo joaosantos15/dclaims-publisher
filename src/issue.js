@@ -5,9 +5,6 @@ const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 exports = module.exports
 
 let ISSUER_ID = 'PUBLISHER-PUBLIC-KEY'
-HypercertsCore.getUserId().then(value => {
-  ISSUER_ID = value
-})
 
 exports.issue = function (claim) {
   return new Promise(function (resolve, reject) {
