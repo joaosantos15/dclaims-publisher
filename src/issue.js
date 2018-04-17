@@ -1,6 +1,6 @@
 const HypercertsNewsClaims = require('hypercerts-news-claims')
-const HypercertsCore = require('hypercerts-core')
-// const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
+// const HypercertsCore = require('hypercerts-core')
+const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 
 exports = module.exports
 
@@ -46,12 +46,16 @@ exports.issueIndividually = function (items) {
     try {
       console.log('issuing individually')
       const articleId = items[0].claim.id
+      console.log('This is the ID: ' + articleId)
       // const claimsBatch = new HypercertsNewsClaims.BatchClaim(articleId, ISSUER_ID, items)
       const issuingQ = []
       for (let i = 0; i < items.length; i++) {
         issuingQ.push(HypercertsCore.handleVerification(articleId, items[i]))
       }
-      Promise.all(issuingQ).then(resolve)
+      Promise.all(issuingQ).then(res => {
+        console.log('Issued.')
+        resolve(res)
+      })
     } catch (err) {
       console.log(err)
       reject(err)
