@@ -59,6 +59,7 @@ function increase () {
   })
 }
 
+// Receives the list of topics to be issued
 function issueBatch (list) {
   if (list.length == 0) {
     console.log('nothing to do...')
@@ -67,11 +68,18 @@ function issueBatch (list) {
     return new Promise(function (resolve, reject) {
       let items = []
       for (let i = 0; i < list.length; i++) {
-        let item = ClaimsBuffer.get(list[i])
+        // gets the content of that topic list
+        let item = {}
+        item.id = list[i]
+        item.list = ClaimsBuffer.get(list[i])
         items.push(item)
       }
-      console.log(items[0])
-      Issue.issueIndividually(items[0]).then(res => {
+      let issueList = []
+      for (let i = 0; i < items.length; i++) {
+        // issueList.push(Issue.issueIndividually(items[i].id, items[i].list))
+        issueList.push(Issue.issueBatch(items[i].id, items[i].list))
+      }
+      Promise.all(issueList).then(res => {
         resolve(list)
       })
     })

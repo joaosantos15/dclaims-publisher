@@ -4,7 +4,10 @@ const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 
 exports = module.exports
 
-const ISSUER_ID = 'MY-PUBLIC-KEY'
+let ISSUER_ID = 'PUBLISHER-PUBLIC-KEY'
+HypercertsCore.getUserId().then(value => {
+  ISSUER_ID = value
+})
 
 exports.issue = function (claim) {
   return new Promise(function (resolve, reject) {
@@ -27,13 +30,14 @@ exports.issueBatch = function (items) {
 }
 */
 
-exports.issueBatch = function (items) {
+exports.issueBatch = function (id, items) {
   return new Promise(function (resolve, reject) {
     try {
       console.log('issuing batch...')
-      const articleId = items[0].claim.id
+      const articleId = id
       const claimsBatch = new HypercertsNewsClaims.BatchClaim(articleId, ISSUER_ID, items)
       HypercertsCore.handleVerification(articleId, claimsBatch).then(resolve)
+      // console.log('ISSUING BATCH: ' + JSON.stringify(claimsBatch))
     } catch (err) {
       console.log(err)
       reject(err)
@@ -45,6 +49,7 @@ exports.issueIndividually = function (items) {
   return new Promise(function (resolve, reject) {
     try {
       console.log('issuing individually')
+      // get the ID before
       const articleId = items[0].claim.id
       console.log('This is the ID: ' + articleId)
       // const claimsBatch = new HypercertsNewsClaims.BatchClaim(articleId, ISSUER_ID, items)

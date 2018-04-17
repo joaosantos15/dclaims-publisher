@@ -16,12 +16,14 @@ module.exports = function (app) {
 
   app.get('/issueipfs', (req, res) => {
     let ipfsLink = req.query.claim
+    console.log(ipfsLink)
     HypercertsCore.getFileFromIPFS(ipfsLink).then(val => {
       console.log('GOT: ' + JSON.stringify(val))
       let claim = Object.assign(new HypercertsNewsClaims.SingleClaim(), val)
       let id = claim.claim.id
-      ClaimsBuffer.add(id, claim)
-      res.end(id + ' ' + claim)
+      // ClaimsBuffer.add(id, claim)
+      ClaimsBuffer.add(id, ipfsLink)
+      res.end(id + ' ' + ipfsLink)
     })
 /*
   	let claim = Object.assign(new HypercertsNewsClaims.SingleClaim(), JSON.parse(req.query.claim))
