@@ -1,6 +1,6 @@
-const HypercertsNewsClaims = require('hypercerts-news-claims')
-// const HypercertsCore = require('hypercerts-core')
-const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
+// const HypercertsNewsClaims = require('hypercerts-news-claims')
+const HypercertsCore = require('hypercerts-core')
+// const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 
 exports = module.exports
 
