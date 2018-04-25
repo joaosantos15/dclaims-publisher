@@ -1,4 +1,4 @@
-// const HypercertsNewsClaims = require('hypercerts-news-claims')
+const HypercertsNewsClaims = require('hypercerts-news-claims')
 const HypercertsCore = require('hypercerts-core')
 // const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 
