@@ -1,5 +1,4 @@
 exports = module.exports
-const HypercertsNewsClaims = require('hypercerts-news-claims')
 
 // global.claimsBuffer is type Map()
 
@@ -40,7 +39,7 @@ exports.elementsOverTreshold = function (treshold) {
     let elements = []
     function checkLength (value, key, map) {
       if (value.length >= treshold) {
-        console.log('This one: ' + key)
+        console.log('Issuing: ' + key)
         elements.push(key)
       }
     }

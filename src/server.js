@@ -5,6 +5,7 @@ const HypercertsCore = require('hypercerts-core')
 // const HypercertsCore = require('../../hypercerts-core/src/hc-core.js')
 
 const app = express()
+const BUFFER_SIZE = 10
 
 app.use(function (req, res, next) {
   var oneof = false
@@ -51,7 +52,7 @@ function increase () {
   console.log('Heeeeyy')
   counter++
   console.log(counter)
-  ClaimsBuffer.elementsOverTreshold(2).then(issueBatch).then(list => {
+  ClaimsBuffer.elementsOverTreshold(BUFFER_SIZE).then(issueBatch).then(list => {
     for (let i = 0; i < list.length; i++) {
       ClaimsBuffer.clear(list[i])
       console.log('Cleared: ' + list[i])
