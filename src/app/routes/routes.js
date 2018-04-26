@@ -17,6 +17,7 @@ module.exports = function (app) {
 
   app.get('/issueipfs', (req, res) => {
     let ipfsLink = req.query.claim
+    console.log('Received: ' + ipfsLink)
     // console.log(ipfsLink)
     HypercertsCore.getFileFromIPFS(ipfsLink).then(val => {
       // console.log('GOT: ' + JSON.stringify(val))
