@@ -1,6 +1,7 @@
 # DClaims-Publisher
-**note:** this is a work in progress
-Allows for batch issuance of DClaims-News claims.
+>DClaims-Publisher is part of the [DClaims project](https://github.com/inesc-id/dclaims-pm).
+
+Publishers are servers in the DClaims system which act as a proxy between end-users and the Ethereum Blockchain.
 
 ## Usage
 ```sh
